@@ -1,2 +1,12 @@
-package com.example.rentcars.repository;public class UserRepository {
+package com.example.rentcars.repository;
+
+
+import com.example.rentcars.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findByUserEmail(String email);
 }
