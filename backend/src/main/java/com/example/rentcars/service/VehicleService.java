@@ -3,9 +3,11 @@ package com.example.rentcars.service;
 import com.example.rentcars.model.Vehicle;
 import com.example.rentcars.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class VehicleService {
     @Autowired
     private VehicleRepository vehicleRepository;

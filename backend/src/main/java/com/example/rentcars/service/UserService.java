@@ -16,7 +16,7 @@ public class UserService {
 
     public User registerUser(User user) {
 
-        User existingUser = userRepository.findByUserEmail(user.getEmail());
+        User existingUser = userRepository.findByEmail(user.getEmail());
 
         if (existingUser != null ) {
             throw new RuntimeException("User already exists");
@@ -27,7 +27,7 @@ public class UserService {
 
     public Optional<User> authenticate(LoginRequest loginRequest) {
 
-        Optional<User> user = Optional.ofNullable(userRepository.findByUserEmail(loginRequest.getEmail()));
+        Optional<User> user = Optional.ofNullable(userRepository.findByEmail(loginRequest.getEmail()));
 
         if (user.isPresent() && user.get().getPassword().equals(loginRequest.getPassword())) {
             return user;
