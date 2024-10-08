@@ -13,6 +13,7 @@ public class Vehicle {
     private String brand;
     private String model;
     private String color;
+    private String category;
     private String pricePerDay;
     private boolean available;
 
@@ -46,6 +47,14 @@ public class Vehicle {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getPricePerDay() {
