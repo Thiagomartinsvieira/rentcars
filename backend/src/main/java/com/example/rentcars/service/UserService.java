@@ -3,6 +3,7 @@ package com.example.rentcars.service;
 import com.example.rentcars.dto.LoginRequest;
 import com.example.rentcars.model.User;
 import com.example.rentcars.repository.UserRepository;
+import com.example.rentcars.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,27 +17,28 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public User registerUser(User user) {
-
+    public String registerUser(User user) {
         User existingUser = userRepository.findByEmail(user.getEmail());
 
-        if (existingUser != null ) {
+        if (existingUser != null) {
             throw new RuntimeException("User already exists");
-        } else  {
-
+        } else {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            return userRepository.save(user);
+            User registeredUser = userRepository.save(user);
+            return jwtUtil.generateToken(user.getEmail());
         }
     }
 
-    public Optional<User> authenticate(LoginRequest loginRequest) {
-
+    public Optional<String> authenticate(LoginRequest loginRequest) {
         Optional<User> user = Optional.ofNullable(userRepository.findByEmail(loginRequest.getEmail()));
 
         if (user.isPresent() && passwordEncoder.matches(loginRequest.getPassword(), user.get().getPassword())) {
-            return user;
+            return Optional.of(jwtUtil.generateToken(user.get().getEmail()));
         }
 
         return Optional.empty();

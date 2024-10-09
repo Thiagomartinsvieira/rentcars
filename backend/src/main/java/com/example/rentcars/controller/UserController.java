@@ -17,19 +17,17 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
-        User registeredUser = userService.registerUser(user);
-
-        return ResponseEntity.ok(registeredUser);
+    public ResponseEntity<String> registerUser(@RequestBody User user) {
+        String token = userService.registerUser(user);
+        return ResponseEntity.ok(token);
     }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        Optional<String> token = userService.authenticate(loginRequest);
 
-        Optional<User> user = userService.authenticate(loginRequest);
-
-        if (user.isPresent()) {
-            return ResponseEntity.ok("Login successful");
+        if (token.isPresent()) {
+            return ResponseEntity.ok(token.get());
         }
 
         return ResponseEntity.status(401).body("Invalid credentials");
@@ -38,7 +36,6 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         Optional<User> user = userService.findById(id);
-
         return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
