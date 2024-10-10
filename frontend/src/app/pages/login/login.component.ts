@@ -33,7 +33,7 @@ export class LoginComponent {
       }
     } catch (error) {
       console.error("Login failed", error)
-      alert("Invalid email or password")
+      alert("An error occurred")
 
       this.email = "";
       this.password = "";

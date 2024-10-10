@@ -13,7 +13,7 @@ export class AuthService {
 
   async register(userData: any): Promise<any> {
     try {
-      const response = await axios.post(`${this.apiUrl}/register`, userData)
+      const response = await axios.post(`${this.apiUrl}/users/register`, userData)
       return response.data;
     } catch (error) {
       console.log("Error registering user", error);
