@@ -8,9 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.parser.Entity;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/users")
 public class UserController {
     @Autowired
@@ -23,15 +26,18 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         Optional<String> token = userService.authenticate(loginRequest);
 
         if (token.isPresent()) {
-            return ResponseEntity.ok(token.get());
+            Map<String, String> response = new HashMap<>();
+            response.put("token", token.get());
+            return ResponseEntity.ok(response);
         }
 
         return ResponseEntity.status(401).body("Invalid credentials");
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
