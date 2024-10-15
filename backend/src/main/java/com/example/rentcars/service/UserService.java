@@ -34,14 +34,18 @@ public class UserService {
         }
     }
 
-    public Optional<String> authenticate(LoginRequest loginRequest) {
-        Optional<User> user = Optional.ofNullable(userRepository.findByEmail(loginRequest.getEmail()));
+    public Optional<User> authenticate(LoginRequest loginRequest) {
+        User user = userRepository.findByEmail(loginRequest.getEmail());
 
-        if (user.isPresent() && passwordEncoder.matches(loginRequest.getPassword(), user.get().getPassword())) {
-            return Optional.of(jwtUtil.generateToken(user.get().getEmail()));
+        if (user != null && passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+            return Optional.of(user);
         }
 
         return Optional.empty();
+    }
+
+    public String generateToken(User user) {
+        return jwtUtil.generateToken(user.getEmail());
     }
 
     public Optional<User> findById(Long id) {

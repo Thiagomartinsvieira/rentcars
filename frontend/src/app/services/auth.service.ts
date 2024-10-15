@@ -26,10 +26,14 @@ export class AuthService {
       const response = await axios.post(`${this.apiUrl}/users/login`, loginData);
       // console.log("Backend response:", response.data);
       const token = response.data?.token;
-      if (token) {
+      const user = response.data?.user
+
+      if (token && user) {
         this.setToken(token);
-        // console.log("Login successful, token:", token);
+        this.setUser(user);
+
       }
+
       return token;
     } catch (error) {
       console.error('Error during login', error);
@@ -42,6 +46,18 @@ export class AuthService {
     localStorage.setItem("authToken", token)
   }
 
+  private setUser(user: any): void {
+    console.log('Salvando usuário no localStorage:', user);
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  getUser(): any {
+    const user = localStorage.getItem("user");
+    console.log("Recuperando usuário do localStorage:", user); 
+    return user ? JSON.parse(user) : null;
+  }
+
+
   getToken(): string | null {
     return localStorage.getItem('authToken')
   }
@@ -53,7 +69,6 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem("authToken")
+    localStorage.removeItem("user")
   }
-
-
 }

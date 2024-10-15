@@ -27,11 +27,13 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        Optional<String> token = userService.authenticate(loginRequest);
+        Optional<User> user = userService.authenticate(loginRequest);
 
-        if (token.isPresent()) {
-            Map<String, String> response = new HashMap<>();
-            response.put("token", token.get());
+        if (user.isPresent()) {
+            String token = userService.generateToken(user.get());
+            Map<String, Object> response = new HashMap<>();
+            response.put("token", token);
+            response.put("user", user.get());
             return ResponseEntity.ok(response);
         }
 
