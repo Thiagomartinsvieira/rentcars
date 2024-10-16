@@ -7,6 +7,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginOptionsComponent } from './pages/login-options/login-options.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 
 export const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -14,6 +15,7 @@ export const routes: Routes = [
   {path: "contact", component: ContactComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
+  {path: "vehicles", component: VehiclesComponent},
   {path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
   {path: "login-options", component: LoginOptionsComponent},
   {path: "**", redirectTo: "", pathMatch: "full"}

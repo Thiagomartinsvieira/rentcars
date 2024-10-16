@@ -1,20 +1,29 @@
 import axios from 'axios';
 import { environment } from '../../environments/environment';
+import { Injectable } from '@angular/core';
 
-export class ApiService {
+@Injectable({
+  providedIn: "root"
+})
+
+export class VehicleService {
+  private apiUrl = environment.apiUrl;
+
   constructor() {
     console.log("API URL: ", environment.apiUrl);
   }
 
-  getData() {
-    return axios.get(`${environment.apiUrl}/api`)
-      .then(response => {
-        console.log("Data fetched:", response.data);
-        return response.data;
-      })
-      .catch(error => console.error("Error fetching data: ", error));
+  async getVehicles(): Promise<any> {
+    try {
+      const response = await axios.get(`${this.apiUrl}/vehicles`);
+      return response.data;
+    } catch (error) {
+      console.log("Error fetching vehicles", error)
+      throw error;
+    }
   }
+
 }
 
-const service = new ApiService();
-service.getData();
+
+const service = new VehicleService();

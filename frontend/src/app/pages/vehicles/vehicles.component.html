@@ -1,0 +1,14 @@
+<div class="container mx-auto p-8">
+  <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Available Vehicles</h2>
+  <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <li *ngFor="let vehicle of vehicles" class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300"
+        [class.opacity-50]="!vehicle.available">
+      <h3 class="text-xl font-semibold mb-2">{{ vehicle.model }} - {{ vehicle.brand }}</h3>
+      <p class="text-gray-600">Color: {{ vehicle.color }}</p>
+      <p class="text-gray-600">Category: {{ vehicle.category }}</p>
+      <p class="text-green-600 font-bold">Price/Day: ${{ vehicle.pricePerDay }}</p>
+      <span *ngIf="vehicle.available" class="text-sm text-green-500 font-semibold">Available</span>
+      <span *ngIf="!vehicle.available" class="text-sm text-red-500 font-semibold">Unavailable</span>
+    </li>
+  </ul>
+</div>

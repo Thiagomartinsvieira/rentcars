@@ -1,69 +1,77 @@
-<div class="justify-center h-screen bg-gray-100">
-  <h1 class="text-2xl font-bold mb-6">Welcome to RentCars</h1>
-  <p class="text-lg mb-4">Please choose an option:</p>
-
-  <div class="space-y-4">
-    <a routerLink="/login" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</a>
-    <a routerLink="/register" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Create Account</a>
-  </div>
-</div>
-
-<div class="bg-gray-900 text-white">
-  <section class="hero-section bg-cover bg-center h-screen" style="background-image: url('https://rev-ai.io/wp-content/uploads/2022/03/Transaction-Tracking-and-Analytics-Steering-Car-Rental-banner.webp');">
-    <div class="container mx-auto flex flex-col items-center justify-center h-full text-center">
-      <h1 class="text-5xl font-bold">Rent Your Perfect Car with RentCars</h1>
-      <p class="mt-4 text-xl bg-slate-600 p-1 rounded-md">Find the ideal vehicle for your trip</p>
-      <a href="/vehicles" class="mt-6 bg-blue-600 hover:bg-blue-700 px-8 py-3 text-lg rounded">See Our Vehicles</a>
+<div class="bg-gray-900 text-white ">
+  <section class="hero-section py-12 h-screen bg-center">
+    <div class="container mx-auto h-full flex flex-col text-center items-center justify-center">
+      <h1 class="text-4xl font-bold">{{firstName}} Dashboard</h1>
+      <p class="mt-4 text-lg bg-slate-600 p-1 rounded-md">Welcome to your control panel</p>
     </div>
   </section>
 
   <section class="py-12">
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div class="bg-gray-800 p-6 rounded-lg">
-        <svg class="mx-auto h-12 w-12 text-blue-500" fill="none" viewBox="0 0 24 24">
-          <path d="M12 3v18m9-9H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-        <h2 class="text-2xl font-bold mt-4">Easy Booking</h2>
-        <p class="mt-2 text-gray-400">Book your car with just a few clicks.</p>
-        <a href="/pricing" class="text-blue-500 mt-4 inline-block">View Pricing</a>
+        <h2 class="text-2xl font-bold">My Bookings</h2>
+        <p class="mt-2 text-gray-400">Manage your vehicle bookings.</p>
+        <a href="/my-bookings" class="text-blue-500 mt-4 inline-block">View Bookings</a>
       </div>
 
       <div class="bg-gray-800 p-6 rounded-lg">
-        <svg class="mx-auto h-12 w-12 text-blue-500" fill="none" viewBox="0 0 24 24">
-          <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-        <h2 class="text-2xl font-bold mt-4">Premium Service</h2>
-        <p class="mt-2 text-gray-400">We offer top-notch customer support.</p>
-        <a href="/about" class="text-blue-500 mt-4 inline-block">Learn More</a>
+        <h2 class="text-2xl font-bold">Favorites</h2>
+        <p class="mt-2 text-gray-400">Access your favorite vehicles.</p>
+        <a href="/favorites" class="text-blue-500 mt-4 inline-block">View Favorites</a>
       </div>
 
       <div class="bg-gray-800 p-6 rounded-lg">
-        <svg class="mx-auto h-12 w-12 text-blue-500" fill="none" viewBox="0 0 24 24">
-          <path d="M12 2a10 10 0 110 20 10 10 0 010-20z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-        <h2 class="text-2xl font-bold mt-4">Quick Rentals</h2>
-        <p class="mt-2 text-gray-400">Rent and pick up your car in minutes.</p>
-        <a href="/contact" class="text-blue-500 mt-4 inline-block">Contact Us</a>
+        <h2 class="text-2xl font-bold">Profile</h2>
+        <p class="mt-2 text-gray-400">Update your personal information.</p>
+        <a href="/profile" class="text-blue-500 mt-4 inline-block">Edit Profile</a>
+      </div>
+
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-2xl font-bold">Support</h2>
+        <p class="mt-2 text-gray-400">Contact us for assistance.</p>
+        <a href="/support" class="text-blue-500 mt-4 inline-block">Customer Support</a>
+      </div>
+
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-2xl font-bold">Rental History</h2>
+        <p class="mt-2 text-gray-400">Review your past rentals.</p>
+        <a href="/rental-history" class="text-blue-500 mt-4 inline-block">View History</a>
+      </div>
+
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-2xl font-bold">Logout</h2>
+        <p class="mt-2 text-gray-400">Sign out of your account.</p>
+        <a href="/logout" class="text-blue-500 mt-4 inline-block">Logout</a>
       </div>
     </div>
   </section>
 
   <section class="py-12 bg-gray-800">
     <div class="container mx-auto text-center">
-      <h2 class="text-4xl font-bold">Popular Vehicles</h2>
-      <p class="mt-4 text-gray-400">Check out the most rented cars by our customers.</p>
+      <h2 class="text-4xl font-bold">Recommended Vehicles for You</h2>
+      <p class="mt-4 text-gray-400">Based on your preferences.</p>
 
       <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Vehicle Cards -->
         <div class="bg-gray-700 p-6 rounded-lg">
-          <img src="https://static.rentcars.com/imagens/carros/fiat-mobi.png" alt="Economic Car" class="w-full h-48 object-cover rounded-md">
-          <h3 class="text-2xl font-bold mt-4">Economic</h3>
-          <p class="text-gray-400 mt-2">Starting from $45/day</p>
-          <a href="/vehicles/1" class="text-blue-500 mt-4 inline-block">Details</a>
+          <img src="https://static.rentcars.com/imagens/carros/fiat-mobi.png" alt="Car 1" class="w-full h-48 object-cover rounded-md">
+          <h3 class="text-2xl font-bold mt-4">Fiat Mobi</h3>
+          <p class="text-gray-400 mt-2">Starting at $45/day</p>
+          <a href="/vehicles/1" class="text-blue-500 mt-4 inline-block">Reserve</a>
         </div>
 
-        <!-- Add other vehicle cards here -->
+        <div class="bg-gray-700 p-6 rounded-lg">
+          <img src="https://static.rentcars.com/imagens/carros/peugeot_208-2020-2021.png" alt="Car 2" class="w-full h-48 object-cover rounded-md">
+          <h3 class="text-2xl font-bold mt-4">Peugeot 208</h3>
+          <p class="text-gray-400 mt-2">Starting at $55/day</p>
+          <a href="/vehicles/2" class="text-blue-500 mt-4 inline-block">Reserve</a>
+        </div>
 
+        <div class="bg-gray-700 p-6 rounded-lg">
+          <img src="https://static.rentcars.com/imagens/carros/jeep-renegade-2022.png" alt="Car 3" class="w-full h-48 object-cover rounded-md">
+          <h3 class="text-2xl font-bold mt-4">Jeep Renegade</h3>
+          <p class="text-gray-400 mt-2">Starting at $85/day</p>
+          <a href="/vehicles/3" class="text-blue-500 mt-4 inline-block">Reserve</a>
+        </div>
       </div>
     </div>
   </section>
@@ -71,8 +79,8 @@
   <section class="py-12 bg-gray-900 text-center">
     <div class="container mx-auto flex flex-col">
       <h2 class="text-4xl font-bold">Ready to Rent Your Car?</h2>
-      <p class="mt-4 text-gray-400">Explore our fleet and book your ideal vehicle.</p>
-      <a href="/vehicles" class="mt-6 bg-blue-600 hover:bg-blue-700 px-8 py-3 text-lg rounded">See Our Vehicles</a>
+      <p class="mt-4 text-gray-400">Explore our inventory and make your booking.</p>
+      <a href="/vehicles" class="mt-6 bg-blue-600 hover:bg-blue-700 px-8 py-3 text-lg rounded">View Our Vehicles</a>
     </div>
   </section>
 </div>
