@@ -1,1 +1,40 @@
-<p>contact works!</p>
+<div class="container mx-auto p-8" style="margin-top: 80px;"> 
+  
+  <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Help Center</h2>
+
+  <div class="bg-gray-100 p-6 rounded-lg mb-8 shadow-md">
+    <h3 class="text-2xl font-semibold mb-4">Useful Information</h3>
+    <ul class="list-disc pl-6">
+      <li class="mb-2">For questions about rentals, visit our <a href="/rentals" class="text-blue-600 underline">rentals page</a>.</li>
+      <li class="mb-2">If you need help with your account, check out our <a href="/account-help" class="text-blue-600 underline">Account Guide</a>.</li>
+      <li class="mb-2">For questions about pricing, visit our <a href="/pricing" class="text-blue-600 underline">pricing page</a>.</li>
+      <li class="mb-2">If you want to speak directly with us, contact us at: <strong>(11) 5555-1234</strong></li>
+    </ul>
+  </div>
+
+  <div class="bg-white p-6 rounded-lg shadow-lg">
+    <h3 class="text-2xl font-semibold mb-4">Still have questions?</h3>
+    <p class="mb-4 text-gray-600">If the information above didn't resolve your issue, please fill out the form below and we will get back to you as soon as possible.</p>
+    
+    <form (ngSubmit)="submitForm()">
+      <div class="mb-4">
+        <label for="name" class="block text-gray-700 font-semibold">Your Name</label>
+        <input type="text" id="name" [(ngModel)]="name" name="name" required class="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-500">
+      </div>
+
+      <div class="mb-4">
+        <label for="email" class="block text-gray-700 font-semibold">Your Email</label>
+        <input type="email" id="email" [(ngModel)]="email" name="email" required class="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-500">
+      </div>
+
+      <div class="mb-4">
+        <label for="message" class="block text-gray-700 font-semibold">Your Question</label>
+        <textarea id="message" [(ngModel)]="message" name="message" rows="5" required class="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-500"></textarea>
+      </div>
+
+      <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+        Submit Question
+      </button>
+    </form>
+  </div>
+</div>
