@@ -8,7 +8,10 @@
       <li><a routerLink="/rentals" class="text-white hover:text-gray-400 transition">My Rentals</a></li>
       <li><a routerLink="/pricing" class="text-white hover:text-gray-400 transition">Pricing</a></li>
       <li><a routerLink="/contact" class="text-white hover:text-gray-400 transition">Contact</a></li>
-      <li><a routerLink="/login-options" class="text-white hover:text-gray-400 transition">Login/Sign Up</a></li>
+
+      <li *ngIf="!isAuthenticated"><a routerLink="/login-options" class="text-white hover:text-gray-400 transition">Login/Sign Up</a></li>
+      <li *ngIf="isAuthenticated"><a (click)="logout()" class="text-white hover:text-gray-400 transition">Logout</a></li>
+
     </ul>
 
     <div class="md:hidden">
@@ -27,7 +30,8 @@
       <li><a routerLink="/rentals" class="text-white hover:text-gray-400 transition">My Rentals</a></li>
       <li><a routerLink="/pricing" class="text-white hover:text-gray-400 transition">Pricing</a></li>
       <li><a routerLink="/contact" class="text-white hover:text-gray-400 transition">Contact</a></li>
-      <li><a routerLink="/login-options" class="text-white hover:text-gray-400 transition">Login/Sign Up</a></li>
+
+      <li ><a routerLink="/login-options" class="text-white hover:text-gray-400 transition">Login/Sign Up</a></li>
     </ul>
   </div>
 </nav> 

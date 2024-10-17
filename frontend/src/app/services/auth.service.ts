@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import axios from 'axios';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,13 @@ import axios from 'axios';
 
 export class AuthService {
   private apiUrl = environment.apiUrl;
+  private authStatus = new BehaviorSubject<boolean>(this.isAuthenticated());
 
-  constructor() { }
+  constructor() {}
+
+  getAuthStatus() {
+    return this.authStatus.asObservable();
+  }
 
   async register(userData: any): Promise<any> {
     try {
@@ -31,6 +37,7 @@ export class AuthService {
       if (token && user) {
         this.setToken(token);
         this.setUser(user);
+        this.authStatus.next(true);
 
       }
 
@@ -70,5 +77,6 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem("authToken")
     localStorage.removeItem("user")
+    this.authStatus.next(false)
   }
 }
