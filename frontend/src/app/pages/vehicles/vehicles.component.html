@@ -1,14 +1,26 @@
-<div class="container mx-auto p-8">
+<div class="container mx-auto p-8 mt-16">
   <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Available Vehicles</h2>
+
   <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    <li *ngFor="let vehicle of vehicles" class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300"
+
+    <li *ngFor="let vehicle of vehicles" class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-transform transform hover:-translate-y-1 duration-300" 
         [class.opacity-50]="!vehicle.available">
-      <h3 class="text-xl font-semibold mb-2">{{ vehicle.model }} - {{ vehicle.brand }}</h3>
-      <p class="text-gray-600">Color: {{ vehicle.color }}</p>
-      <p class="text-gray-600">Category: {{ vehicle.category }}</p>
-      <p class="text-green-600 font-bold">Price/Day: ${{ vehicle.pricePerDay }}</p>
-      <span *ngIf="vehicle.available" class="text-sm text-green-500 font-semibold">Available</span>
-      <span *ngIf="!vehicle.available" class="text-sm text-red-500 font-semibold">Unavailable</span>
+
+      <div class="mb-4">
+        <img [src]="vehicle.imageUrl" alt="{{ vehicle.model }}" class="w-full h-48 object-cover rounded-lg" />
+      </div>
+
+      <div class="flex flex-col">
+        <h3 class="text-xl font-semibold mb-2">{{ vehicle.model }} - {{ vehicle.brand }}</h3>
+        <p class="text-gray-600">Color: {{ vehicle.color }}</p>
+        <p class="text-gray-600">Category: {{ vehicle.category }}</p>
+        <p class="text-green-600 font-bold">Price/Day: ${{ vehicle.pricePerDay }}</p>
+
+        <span *ngIf="vehicle.available" class="mt-2 text-sm text-green-500 font-semibold">Available</span>
+        <span *ngIf="!vehicle.available" class="mt-2 text-sm text-red-500 font-semibold">Unavailable</span>
+        
+        <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">View Details</button>
+      </div>
     </li>
   </ul>
 </div>
