@@ -11,10 +11,11 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String brand;
-    private String model; 
+    private String model;
     private String color;
     private String category;
     private String pricePerDay;
+    private String imageUrl;
     private boolean available;
 
     public Long getId() {
@@ -63,6 +64,14 @@ public class Vehicle {
 
     public void setPricePerDay(String pricePerDay) {
         this.pricePerDay = pricePerDay;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public boolean isAvailable() {
