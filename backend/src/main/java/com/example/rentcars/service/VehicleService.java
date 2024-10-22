@@ -25,6 +25,24 @@ public class VehicleService {
         return vehicleRepository.save(vehicle);
     }
 
+    public Vehicle updateVehicle(Long id, Vehicle updatedVehicle) {
+        Optional<Vehicle> existingVehicle = vehicleRepository.findById(id);
+
+        if (existingVehicle.isPresent()) {
+            Vehicle vehicle = existingVehicle.get();
+            vehicle.setBrand(updatedVehicle.getBrand());
+            vehicle.setModel(updatedVehicle.getModel());
+            vehicle.setColor(updatedVehicle.getColor());
+            vehicle.setPricePerDay(updatedVehicle.getPricePerDay());
+            vehicle.setCategory(updatedVehicle.getCategory());
+            vehicle.setAvailable(updatedVehicle.isAvailable());
+            vehicle.setImageUrl(updatedVehicle.getImageUrl());
+            return vehicleRepository.save(vehicle);
+        } else {
+            return null;
+        }
+    }
+
     public void deleteById(Long id) {
         vehicleRepository.deleteById(id);
     }
