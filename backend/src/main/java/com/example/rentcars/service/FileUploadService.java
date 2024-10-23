@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,8 +13,7 @@ import java.nio.file.Paths;
 @Service
 public class FileUploadService {
 
-    private String uploadDir = "/path/to/absolute/uploads";
-
+    private String uploadDir = new File("/src/main/resources/static/uploads").getAbsolutePath();
     @PostConstruct
     public void init() {
         System.out.println("upload path: " + uploadDir);

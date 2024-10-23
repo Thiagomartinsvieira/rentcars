@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+ 
 @RestController
 @RequestMapping("/api/vehicles")
 public class VehicleController {
@@ -30,6 +30,16 @@ public class VehicleController {
     @PostMapping
     public ResponseEntity<Vehicle> addVehicle(@RequestBody Vehicle vehicle) {
         return ResponseEntity.ok(vehicleService.save(vehicle));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Vehicle> editVehicleById(@PathVariable Long id, @RequestBody Vehicle vehicle) {
+        Vehicle updateVehicle = vehicleService.updateVehicle(id, vehicle);
+        if (updateVehicle != null) {
+            return ResponseEntity.ok(updateVehicle);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
