@@ -1,0 +1,96 @@
+<div class="flex items-center justify-center p-8 mt-16">
+  <div class="w-full max-w-2xl p-8 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-center text-gray-700">Vehicle Management</h2>
+
+    <form (ngSubmit)="addVehicle()" class="mt-4">
+      <div class="mb-4">
+        <label for="brand" class="block text-sm font-medium text-gray-600">Brand</label>
+        <input type="text" id="brand" [(ngModel)]="newVehicle.brand" name="brand" required
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+          placeholder="Vehicle brand" />
+      </div>
+
+      <div class="mb-4">
+        <label for="model" class="block text-sm font-medium text-gray-600">Model</label>
+        <input type="text" id="model" [(ngModel)]="newVehicle.model" name="model" required
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+          placeholder="Vehicle model" />
+      </div>
+
+      <div class="mb-4">
+        <label for="color" class="block text-sm font-medium text-gray-600">Color</label>
+        <input type="text" id="color" [(ngModel)]="newVehicle.color" name="color" required
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+          placeholder="Vehicle color" />
+      </div>
+
+      <div class="mb-4">
+        <label for="category" class="block text-sm font-medium text-gray-600">Category</label>
+        <input type="text" id="category" [(ngModel)]="newVehicle.category" name="category" required
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+          placeholder="Vehicle category" />
+      </div>
+
+      <div class="mb-4">
+        <label for="pricePerDay" class="block text-sm font-medium text-gray-600">Price per Day</label>
+        <input type="number" id="pricePerDay" [(ngModel)]="newVehicle.pricePerDay" name="pricePerDay" required
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+          placeholder="Rental price per day" />
+      </div>
+
+      <div class="mb-4">
+        <label for="imageUrl" class="block text-sm font-medium text-gray-600">Image URL</label>
+        <input type="text" id="imageUrl" [(ngModel)]="newVehicle.imageUrl" name="imageUrl" required
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+          placeholder="Vehicle image URL" />
+      </div>
+
+      <div class="mb-4 flex items-center">
+        <input type="checkbox" id="available" [(ngModel)]="newVehicle.available" name="available"
+          class="mr-2" />
+        <label for="available" class="text-sm font-medium text-gray-600">Available</label>
+      </div>
+
+      <button type="submit"
+        class="w-full px-4 py-2 mt-4 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300">
+        {{ editingVehicleId ? 'Update Vehicle' : 'Add Vehicle' }}
+      </button>
+    </form>
+
+    <div class="mt-8 overflow-x-auto">
+      <table class="min-w-full bg-white">
+        <thead>
+          <tr>
+            <th class="py-2 px-4 bg-gray-200 text-left text-sm font-medium text-gray-600">ID</th>
+            <th class="py-2 px-4 bg-gray-200 text-left text-sm font-medium text-gray-600">Brand</th>
+            <th class="py-2 px-4 bg-gray-200 text-left text-sm font-medium text-gray-600">Model</th>
+            <th class="py-2 px-4 bg-gray-200 text-left text-sm font-medium text-gray-600">Color</th>
+            <th class="py-2 px-4 bg-gray-200 text-left text-sm font-medium text-gray-600">Price per Day</th>
+            <th class="py-2 px-4 bg-gray-200 text-left text-sm font-medium text-gray-600">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vehicle of vehicles" class="border-b">
+            <td class="py-2 px-4 text-sm text-gray-600">{{ vehicle.id }}</td>
+            <td class="py-2 px-4 text-sm text-gray-600">{{ vehicle.brand }}</td>
+            <td class="py-2 px-4 text-sm text-gray-600">{{ vehicle.model }}</td>
+            <td class="py-2 px-4 text-sm text-gray-600">{{ vehicle.color }}</td>
+            <td class="py-2 px-4 text-sm text-gray-600">{{ vehicle.pricePerDay }}</td>
+            <td class="py-2 px-4 text-sm text-gray-600">
+              <div class="flex space-x-2">
+                <button (click)="editVehicle(vehicle.id)"
+                  class="px-3 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none focus:ring focus:ring-yellow-300">
+                  Edit
+                </button>
+                <button (click)="deleteVehicle(vehicle.id)"
+                  class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300">
+                  Delete
+                </button>
+              </div>
+            </td>
+            
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

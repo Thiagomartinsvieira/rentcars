@@ -9,6 +9,7 @@ import { LoginOptionsComponent } from './pages/login-options/login-options.compo
 import { AuthGuard } from './core/guards/auth.guard';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 import { RentalsComponent } from './pages/rentals/rentals.component';
+import { AdminVehiclesComponent } from './pages/admin-vehicles/admin-vehicles.component';
 
 export const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -19,6 +20,7 @@ export const routes: Routes = [
   {path: "vehicles", component: VehiclesComponent},
   {path: "rentals", component: RentalsComponent, canActivate: [AuthGuard]},
   {path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: "admin/vehicles", component: AdminVehiclesComponent, canActivate: [AuthGuard]},
   {path: "login-options", component: LoginOptionsComponent},
   {path: "**", redirectTo: "", pathMatch: "full"}
 ];
