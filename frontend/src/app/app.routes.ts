@@ -10,6 +10,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 import { RentalsComponent } from './pages/rentals/rentals.component';
 import { AdminVehiclesComponent } from './pages/admin-vehicles/admin-vehicles.component';
+import { VehicleDetailComponent } from './pages/vehicle-detail/vehicle-detail.component';
 
 export const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -22,5 +23,6 @@ export const routes: Routes = [
   {path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
   {path: "admin/vehicles", component: AdminVehiclesComponent, canActivate: [AuthGuard]},
   {path: "login-options", component: LoginOptionsComponent},
+  {path: "vehicles/:id", component: VehicleDetailComponent},
   {path: "**", redirectTo: "", pathMatch: "full"}
 ];

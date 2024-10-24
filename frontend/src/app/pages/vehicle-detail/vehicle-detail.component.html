@@ -1,0 +1,25 @@
+<div class="container mx-auto p-8 mt-16">
+  <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Vehicle Details</h2>
+
+  <div *ngIf="vehicle" class="bg-white shadow-lg p-8 rounded-lg flex flex-col">
+    <img [src]="vehicle.imageUrl" alt="{{ vehicle.model }}" class="w-full h-64 object-cover rounded-lg mb-6" />
+
+    <h3 class="text-2xl font-semibold mb-4">{{ vehicle.model }} - {{ vehicle.brand }}</h3>
+    <p class="text-gray-600"><strong>Color:</strong> {{ vehicle.color }}</p>
+    <p class="text-gray-600"><strong>Category:</strong> {{ vehicle.category }}</p>
+    <p class="text-gray-600"><strong>Price per Day:</strong> ${{ vehicle.pricePerDay }}</p>
+
+    <span *ngIf="vehicle.available" class="mt-2 text-green-500 font-semibold">Available</span>
+    <span *ngIf="!vehicle.available" class="mt-2 text-red-500 font-semibold">Unavailable</span>
+  
+    <button *ngIf="vehicle.available"
+    (click)="rentVehicle(vehicle.id)" 
+    class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300">
+    Rent this car
+  </button>
+  </div>
+
+  <div *ngIf="!vehicle" class="text-center">
+    <p>Sorry Vehicle not found 😔</p>
+  </div>
+</div>

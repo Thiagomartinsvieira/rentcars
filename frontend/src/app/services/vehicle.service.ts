@@ -55,7 +55,13 @@ export class VehicleService {
     }
   }
 
+  async getVehicleById(id: String): Promise<any> {
+    try {
+      const response = await axios.get(`${this.apiUrl}/vehicles/${id}`)
+      return response.data;
+    } catch (error) {
+      console.log("Error fetching vehicle by ID", error)
+      throw error;
+    }
+  } 
 }
-
-
-const service = new VehicleService();
